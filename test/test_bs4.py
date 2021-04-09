@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 
 html = '''
-<td class ="title">
-    <div class ="tit3">        
+<td class ="title black">
+    <div class ="tit3" data-no="10">        
         <a href="/movie/bi/mi/basic.nhn?code=191637"title = "고질라 VS. 콩"> 고질라VS.콩 </a>
     </div>
 </td>
@@ -30,7 +30,14 @@ def ex01():
 
 # 2. attribute로 조회하기
 def ex02():
-    pass
+    bs = BeautifulSoup(html, 'html.parser')
+    # tag_td = bs.find('td', attrs={'class': 'title'})              # class가 title인 td태그
+    # 여러 class를 갖는 태그를 찾을 때에는 검색 조건에 list 사용
+    tag_td = bs.find('td', attrs={'class': ['title', 'black']})
+    # print(tag_td)
+
+    tag_div = bs.find('div', attrs={'class': 'tit3'})
+    print(tag_div)
 
 
 if __name__ == '__main__':
